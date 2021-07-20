@@ -72,13 +72,37 @@ sap.ui.define([
 		 * @private
 		 */
 		_onObjectMatched : function (oEvent) {
-			var sObjectId =  oEvent.getParameter("arguments").objectId;
-			this.getModel().metadataLoaded().then( function() {
-				var sObjectPath = this.getModel().createKey("Alunos", {
-					ID :  sObjectId
-				});
-				this._bindView("/" + sObjectPath);
-			}.bind(this));
+            var sObjectId =  oEvent.getParameter("arguments").objectId;
+            
+
+            if (sObjectId === "new"){
+                //modo de criação
+                var oViewModel = this.getModel("objectView");
+                oViewModel.setProperty("/busy", false);
+            } else {
+                //modo de exibição
+
+                this.getView().byId("inputId").setEditable(false);
+                this.getView().byId("inputName").setEditable(false);
+
+                var that = this;
+                this.getModel().read("/Alunos(" + sObjectId + ")", {
+                    success: function (oData){
+                        that.getView().byId("inputId").setValue(oData.ID);
+                        that.getView().byId("inputName").setValue(oData.Name);
+                    }
+                });
+
+                this.getModel().metadataLoaded().then( function() {
+                    var sObjectPath = this.getModel().createKey("Alunos", {
+                        ID :  sObjectId
+                    });
+                    this._bindView("/" + sObjectPath);
+                }.bind(this));
+            }
+
+
+			
 		},
 
 		/**
