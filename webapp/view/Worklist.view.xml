@@ -68,12 +68,7 @@
 						<cells>
 							<ObjectIdentifier
 								title="{ID}"/>
-							<ObjectNumber
-								number="{
-									path: '',
-									formatter: '.formatter.numberUnit'
-								}"
-								unit="{}"/>
+							<Text text="{Name}" />
 						</cells>
 					</ColumnListItem>
 				</items>
