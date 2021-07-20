@@ -39,16 +39,9 @@
 							text="{worklistView>/worklistTableTitle}"
 							level="H3"/>
 						<ToolbarSpacer />
-						<SearchField
-							id="searchField"
-							tooltip="{i18n>worklistSearchTooltip}"
-							search=".onSearch">
-							<layoutData>
-								<OverflowToolbarLayoutData
-									maxWidth="200px"
-									priority="NeverOverflow"/>
-							</layoutData>
-						</SearchField>
+						
+                        <Button text="{i18n>btnAdd}" press="onPressAdd"/>
+
 					</OverflowToolbar>
 				</headerToolbar>
 
@@ -66,8 +59,7 @@
 						type="Navigation"
 						press=".onPress">
 						<cells>
-							<ObjectIdentifier
-								title="{ID}"/>
+							<ObjectIdentifier title="{ID}"/>
 							<Text text="{Name}" />
 						</cells>
 					</ColumnListItem>

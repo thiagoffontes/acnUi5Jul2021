@@ -48,8 +48,16 @@ sap.ui.define([
 			oTable.attachEventOnce("updateFinished", function(){
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
+            });
+            
+            this.getOwnerComponent().getModel().setUseBatch(false);
+        },
+        
+        onPressAdd: function (){
+            this.getRouter().navTo("object", {
+				objectId: "new"
 			});
-		},
+        },
 
 		/* =========================================================== */
 		/* event handlers                                              */
