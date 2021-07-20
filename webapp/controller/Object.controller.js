@@ -82,6 +82,37 @@ sap.ui.define([
             this.getView().byId("inputName").setEditable(true);
         },
 
+        onPressExcluir: function () {
+            var sKey = this.getView().byId("inputId").getValue();
+
+            this.getModel().remove("/Alunos(" + sKey + ")", {
+                 success: function (){
+                    sap.m.MessageToast.show("sucesso");
+                    window.history.go(-1);
+                }, error: function (){
+                    sap.m.MessageToast.show("error");
+                }
+            });
+        },
+
+        onPressSalvar: function (){
+            var oUpdate = {};
+
+            oUpdate.ID = this.getView().byId("inputId").getValue();
+            oUpdate.Name = this.getView().byId("inputName").getValue();
+
+            this.getModel().sDefaultUpdateMethod = "PUT";
+            
+            this.getModel().update("/Alunos(" + oUpdate.ID + ")", oUpdate, {
+                success: function (){
+                    sap.m.MessageToast.show("sucesso");
+                    window.history.go(-1);
+                }, error: function (){
+                    sap.m.MessageToast.show("error");
+                }
+            });
+        },
+
         onPressCriar: function (){
             var oCreate = {};
 
