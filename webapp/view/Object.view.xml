@@ -11,11 +11,16 @@
 		busy="{objectView>/busy}"
 		busyIndicatorDelay="{objectView>/delay}">
 
-		<semantic:titleHeading>
-			<Title
-				text="{ID}"
-				level="H2"/>
-		</semantic:titleHeading>
+        <semantic:content>
+            <Panel>
+                <VBox>
+                    <Label text="{i18n>tableNameColumnTitle}"/>
+                    <Input id="inputId" width="200px"/>
+                    <Label text="{i18n>tableUnitNumberColumnTitle}"/>
+                    <Input id="inputName" width="200px"/>
+                </VBox>
+            </Panel>
+        </semantic:content>
 
 		<semantic:headerContent>
 			<ObjectNumber
