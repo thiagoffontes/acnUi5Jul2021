@@ -18,6 +18,12 @@
                     <Input id="inputId" width="200px"/>
                     <Label text="{i18n>tableUnitNumberColumnTitle}"/>
                     <Input id="inputName" width="200px"/>
+
+                    <Button id="btnEditar" press="onPressEditar"    text="{i18n>btnEditar}"/>
+                    <Button id="btnSalvar" press="onPressSalvar"    text="{i18n>btnSalvar}"/>
+                    <Button id="btnExcluir" press="onPressExcluir"  text="{i18n>btnExcluir}"/>
+                    <Button id="btnCriar" press="onPressCriar"      text="{i18n>btnCriar}"/>
+
                 </VBox>
             </Panel>
         </semantic:content>

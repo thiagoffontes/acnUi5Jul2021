@@ -71,16 +71,60 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
 		 * @private
 		 */
+
+        onPressEditar: function (){
+            this.getView().byId("btnEditar").setVisible(false);
+            this.getView().byId("btnSalvar").setVisible(true);
+            this.getView().byId("btnExcluir").setVisible(false);
+            this.getView().byId("btnCriar").setVisible(false);
+
+            this.getView().byId("inputId").setEditable(false);
+            this.getView().byId("inputName").setEditable(true);
+        },
+
+        onPressCriar: function (){
+            var oCreate = {};
+
+            oCreate.ID = this.getView().byId("inputId").getValue();
+            oCreate.Name = this.getView().byId("inputName").getValue();
+
+            this.getModel().create("/Alunos", oCreate, {
+                success: function (){
+                    sap.m.MessageToast.show("sucesso");
+                    window.history.go(-1);
+                }, error: function (){
+                    sap.m.MessageToast.show("error");
+                }
+            });
+        },
+
 		_onObjectMatched : function (oEvent) {
             var sObjectId =  oEvent.getParameter("arguments").objectId;
             
 
             if (sObjectId === "new"){
                 //modo de criação
+
+                this.getView().byId("btnEditar").setVisible(false);
+                this.getView().byId("btnSalvar").setVisible(false);
+                this.getView().byId("btnExcluir").setVisible(false);
+                this.getView().byId("btnCriar").setVisible(true);
+
+                this.getView().byId("inputId").setEditable(true);
+                this.getView().byId("inputName").setEditable(true);
+
+                this.getView().byId("inputId").setValue("");
+                this.getView().byId("inputName").setValue("");
+
                 var oViewModel = this.getModel("objectView");
                 oViewModel.setProperty("/busy", false);
             } else {
                 //modo de exibição
+
+                this.getView().byId("btnEditar").setVisible(true);
+                this.getView().byId("btnSalvar").setVisible(false);
+                this.getView().byId("btnExcluir").setVisible(true);
+                this.getView().byId("btnCriar").setVisible(false);
 
                 this.getView().byId("inputId").setEditable(false);
                 this.getView().byId("inputName").setEditable(false);
